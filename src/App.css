@@ -1,0 +1,128 @@
+:root {
+  --color-mui-secondary: #a1a3a5;
+  --color-mui-disabled: #4d5962;
+  --color-mui-selected: #00b5ec;
+  --color-mui-error: #f66666;
+  --color-mui-error-btn: #780000;
+  --color-mui-error-btn-text: #ffffff;
+  --color-mui-error-btn-hover: #480000;
+  --color-mui-success-btn: #00660a;
+  --color-mui-success-btn-text: #ffffff;
+  --color-mui-success-btn-hover: #003305;
+  --color-mui-warning-btn: #807300;
+  --color-mui-warning-btn-text: #ffffff;
+  --color-mui-warning-btn-hover: #595100;
+  --color-mui-info-btn-text: #ffffff;
+  --color-mui-edit: #f6b922;
+  --color-primary: var(--color-mui-primary, #015974);
+  --color-primary-text: #ffffff;
+  --color-secondary: #192f36;
+  --color-secondary-text: #212326;
+  --color-secondary-text: #212326;
+  --color-info: #263c43;
+  --color-info-text: #ffffff;
+  --color-success: var(--color-mui-success, #01a141);
+  --color-success-text: #ffffff;
+  --color-danger: #b60000;
+  --color-danger-text: #ffffff;
+  --color-error: var(--color-mui-error, #ff0000);
+  --color-error-text: #ffffff;
+  --color-negative: var(--color-mui-error, #b60000);
+  --color-negative-text: #ffffff;
+  --color-positive: var(--color-mui-success, #01a141);
+  --color-positive-text: #ffffff;
+  --color-mui-background: #14191d;
+  --color-mui-background-secondary: #1b2228;
+  --color-mui-background-list: #222931;
+  --color-mui-text: #ffffff;
+  --color-mui-text-secondary: #a1a3a5;
+  --color-mui-navigation-bg: #1b2228;
+  --color-mui-navigation-bg-hover: #161d23;
+  --color-mui-navigation-bg-darker: #181f24;
+  --color-mui-navigation-text: #ffffff;
+  --color-mui-navigation-popup: #131d23;
+  --color-mui-navigation-text-active: #0091bd;
+  --color-mui-default: #243541;
+  --color-mui-default-text: #ffffff;
+  --color-mui-default-hover: #1a262f;
+  --color-mui-primary: #00b5ec;
+  --color-mui-primary-text: #ffffff;
+  --color-mui-primary-selected: #006d8e;
+  --color-mui-primary-btn: #007ea5;
+  --color-mui-primary-btn-text: #ffffff;
+  --color-mui-primary-btn-hover: #00485e;
+  --color-mui-primary-btn-focus: #006d8e;
+  --color-mui-primary-btn-selected: #00242f;
+  --color-mui-warning: #ffe600;
+  --color-mui-success: #00cc14;
+  --color-mui-info: #ffffff;
+  --color-mui-checkbox: #a1a3a5;
+  --color-mui-checkbox-hover: #00485e;
+  --color-mui-checkbox-icon: #00485e;
+  --color-mui-checkbox-selected: #00b5ec;
+  --color-mui-checkbox-disabled: #4d5962;
+  --color-mui-checkbox-disabled-icon: #00242f;
+  --color-mui-checkbox-disabled-border: rgba(255, 255, 255, 0.3);
+  --color-mui-switch: #007fa5;
+  --color-mui-switch-hover: #006d8e;
+  --color-mui-switch-disabled: #36454f;
+  --color-mui-switch-disabled-hover: #2b3a45;
+  --color-mui-switch-text: #ffffff;
+  --color-mui-alert-background: #1b2228;
+  --color-mui-modal-background: #222931;
+  --color-background-overlay: rgba(11, 14, 16, 0.9);
+  --color-accent: #a4d7de;
+  --color-accent-text: #212121;
+  --color-warning: #d1cc47;
+  --color-warning-text: #383838;
+  --color-text: #dadada;
+  --color-text-highlight: #ffffff;
+  --color-background: #212326;
+  --color-background-sec: #18191a;
+  --color-background-main: #212121;
+  --color-background-nth: #292c2f;
+  --color-border: #ffffff;
+  --color-shadow: rgba(0, 0, 0, 0.9);
+  --color-form-item-disabled-bg: #3c4044;
+  --color-form-item-disabled-text: #ffffff;
+  --color-form-item-disabled-border: #5c636b;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-xxl: 24px;
+  --text-h1: 32px;
+  --text-h2: var(--text-xxl);
+  --text-h3: var(--text-xl);
+  --text: var(--text-sm);
+  --gap-xs: 0.125rem;
+  --gap-sm: 0.25rem;
+  --gap-md: 0.5rem;
+  --gap-lg: 1rem;
+  --gap-xl: 1.5rem;
+  --gap-xxl: 2rem;
+  --border-radius: 4px;
+  --border-radius-big: 8px;
+  --border-width: 1px;
+  --nav-item-height: 3rem;
+  --border: var(--border-width) solid var(--color-border);
+  --box-shadow: 0 2px 6px rgb(0, 0, 0, 0.3);
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-mui-background);
+  font-size: var(--text);
+  color: var(--color-text);
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
