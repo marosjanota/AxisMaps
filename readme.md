@@ -6,8 +6,8 @@ This is a React-based project template that uses Material-UI (MUI) and OpenStree
 
 ```
 git clone https://github.com/marosjanota/AxisMaps.git
-npm install
-npm run start || npm run build
+npm i
+npm start || npm run build
 ```
 
 ## Cleaning the Cache (Optional)

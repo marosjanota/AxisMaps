@@ -1,9 +1,9 @@
 import React from 'react';
-import OptionsBorder from '../OptionsBorder.tsx';
-import OptionsRSL from '../OptionsRSL.tsx';
-import OptionsWaterDetail from '../OptionsWaterDetail.tsx';
-import OptionsRoadDetail from '../OptionsRoadDetail.tsx';
-import OptionsVisibility from '../OptionsVisibility.tsx';
+import OptionsBorder from '../options/OptionsBorder.tsx';
+import OptionsRSL from '../options/OptionsRSL.tsx';
+import OptionsWaterDetail from '../options/OptionsWaterDetail.tsx';
+import OptionsRoadDetail from '../options/OptionsRoadDetail.tsx';
+import OptionsVisibility from '../options/OptionsVisibility.tsx';
 import { Box, Button, Divider, Stack, TextField } from '@mui/material';
 
 export default function LeftSidebar() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Button, Divider, Stack, Typography, ToggleButtonGroup, ToggleButton } from '@mui/material';
-import AxisButton from '../Button.tsx';
+import { Box } from '@mui/material';
+import MapToolbar from '../toolbar/MapToolbar.tsx';
 
 
 export default function(){
@@ -15,16 +15,7 @@ export default function(){
       }}
     >
 
-      <Stack spacing={2}>
-        <Typography variant="h6">Map toolbar</Typography>
-
-        <AxisButton onClickFunction={() => console.log("Zoom In")}>Zoom In</AxisButton>
-        <AxisButton onClickFunction={() => console.log("Zoom Out")}>Zoom Out</AxisButton>
-        <Divider />
-
-        <AxisButton onClickFunction={() => console.log("Reset map")}>Reset Map</AxisButton>
-
-      </Stack>
+      <MapToolbar />
     </Box>
   );
 }
