@@ -1,22 +1,19 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import MapToolbar from '../toolbar/MapToolbar.tsx';
+import React from "react";
+import { Box } from "@mui/material";
+import MapToolbar from "../toolbar/MapToolbar";
 
-
-export default function(){
+export default function () {
   return (
-    <Box 
+    <Box
       sx={{
-        width: '250px',
-        backgroundColor: 'var(--color-mui-background-secondary)',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '16px'
+        width: "250px",
+        backgroundColor: "var(--color-mui-background-secondary)",
+        display: "flex",
+        flexDirection: "column",
+        padding: "16px",
       }}
     >
-
       <MapToolbar />
     </Box>
   );
 }
-
