@@ -7,6 +7,7 @@ import RightSidebar from "./components/layout/RightSidebar";
 import MapContainer from "./components/layout/MapContainer";
 import Footer from "./components/layout/Footer";
 import { MapOptionsProvider } from "./components/context/MapOptionsContext";
+import TomTomMap from "./tomtom/TomTomMap";
 
 const darkTheme = createTheme({
   palette: {
@@ -23,7 +24,7 @@ function App() {
           <TopNav />
           <Box sx={{ display: "flex", flex: 1 }}>
             <LeftSidebar />
-            <MapContainer />
+            <TomTomMap />
             <RightSidebar />
           </Box>
           <Footer />
