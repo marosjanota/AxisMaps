@@ -7,7 +7,6 @@ interface MapWithLabelToggleProps {
 
 const LayerToggle: React.FC<MapWithLabelToggleProps> = ({ mapInstance }) => {
   const toggleVisibility = (layerId: string) => {
-    console.log(mapInstance?.current?.getStyle().layers);
     if (mapInstance.current) {
       const currentVisibility = mapInstance.current.getLayoutProperty(
         layerId,

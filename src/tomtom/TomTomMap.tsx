@@ -17,6 +17,12 @@ const TomTomMap: React.FC = () => {
         container: mapElement.current,
         center: [4.899, 52.372],
         zoom: 10,
+        style: {
+          map: "2/basic_street-satellite", // 2/basic_street-satellite, basic_main
+          trafficIncidents: "incidents_day",
+          trafficFlow: "flow_relative0",
+          poi: "poi_main",
+        },
       });
 
       mapInstance.current.addControl(new tt.NavigationControl());
