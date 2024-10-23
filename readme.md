@@ -90,3 +90,14 @@ npm cache clean --force
 - React/TypeScript support
 - REST API, SDK, etc., support
 - Availability of documentation
+
+## PMTiles data
+
+One of the OSM data source:
+Geofabrik - https://download.geofabrik.de/
+
+Earth build: https://maps.protomaps.com/builds/
+
+### Tilemaker - https://tilemaker.org/
+
+docker run -it --rm -v ${pwd}:/data ghcr.io/systemed/tilemaker:master /data/region-latest.osm.pbf --output /data/region-latest.pmtiles
