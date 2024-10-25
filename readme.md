@@ -24,8 +24,6 @@ npm cache clean --force
 * Leaflet
 * react-leaflet
 
-
-
 # AXIS workshop - new gen of Maps
 
 ## Providers
