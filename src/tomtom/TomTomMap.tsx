@@ -3,7 +3,7 @@ import tt from "@tomtom-international/web-sdk-maps";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import Box from "@mui/material/Box/Box";
 import LayerToggle from "./LayerToggle";
-import mapServices from '@tomtom-international/web-sdk-services';
+import SearchPlace from "./SearchPlace";
 
 const API_KEY = "3511aLbdzJWwIOPGg5PxuE6AAARooszw";
 
@@ -14,21 +14,9 @@ const TomTomMap: React.FC = () => {
   const [countryLongitude, setCountryLongitude] = useState(-121.91599);
   const [countryLatitude, setCountryLatitude] = useState(37.36765);
 
-  const search = (): void => {
-  const query = document.getElementById('search') as HTMLInputElement;
-  if(query.value === '') return;
-    mapServices.services.fuzzySearch({
-      key: API_KEY,
-      query: query.value,
-    }).then((response) => {
-      console.log(response);
-      if (response && response.results && response.results.length > 0) {
-        let latitude = response.results[0]?.position?.lat as number;
-        let longitude = response.results[0]?.position?.lng as number;
-          setCountryLatitude(latitude) 
-          setCountryLongitude(longitude)
-        }
-    });
+  const setCountry = (latitude: number, longitude: number): void => {
+    setCountryLatitude(latitude) 
+    setCountryLongitude(longitude)
   }
  
   useEffect(() => {
@@ -56,8 +44,7 @@ const TomTomMap: React.FC = () => {
 
   return (
     <Box sx={{ flex: 1 }}>
-     <button onClick={() => search()}>Search</button>
-     <input type="text" id="search"/>
+      <SearchPlace setCountryPosition={setCountry} apikey={API_KEY}></SearchPlace>
       <LayerToggle mapInstance={mapInstance} />
       <div ref={mapElement} style={{ height: "100%", width: "100%" }} />;
     </Box>
