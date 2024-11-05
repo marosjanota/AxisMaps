@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Box, CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import TopNav from "./components/layout/TopNav";
@@ -7,6 +7,7 @@ import RightSidebar from "./components/layout/RightSidebar";
 import MapContainer from "./components/layout/MapContainer";
 import Footer from "./components/layout/Footer";
 import { MapOptionsProvider } from "./components/context/MapOptionsContext";
+import { MapProvider } from "./components/context/MapInstanceContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -22,9 +23,11 @@ function App() {
           <CssBaseline />
           <TopNav />
           <Box sx={{ display: "flex", flex: 1 }}>
-            <LeftSidebar />
-            <MapContainer />
-            <RightSidebar />
+            <MapProvider>
+              <LeftSidebar />
+              <MapContainer />
+              <RightSidebar />
+            </MapProvider>
           </Box>
           <Footer />
         </Box>
