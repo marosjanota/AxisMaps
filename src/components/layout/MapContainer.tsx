@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
 import maplibregl from 'maplibre-gl';
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Protocol } from "pmtiles";
+import {  useMap } from "../context/MapInstanceContext";
+import * as Layers from "../../static/layers/Layers";
+import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
 
 export default function MapContainer() {
   const location: [number, number] = [151.2093, -33.8688];
   
-
   const [mapReady, setMapReady] = useState(false);
 
+  const { setMap } = useMap();
   useEffect(() => {
     setMapReady(true);
   }, []);
@@ -71,25 +74,33 @@ export default function MapContainer() {
         // // console.log(layer.id);
       }
       );
+      map.fitBounds([
+        [32.958984, -5.353521],
+        [43.50585, 5.615985]
+      ]);
 
-      // example: add custom source
-      // map.addSource('myPMTileSource', {
-      //   type: 'vector',
-      //   url: 'pmtiles://http://localhost:1810/osmdata/australia-oceania-latest.pmtiles'
-      // });
+      Layers.AddLanduseLayers(map);
+    
+      Layers.AddWaterLayers(map);
+      
+      Layers.AddRoadOtherLayers(map);
+      
+      Layers.AddRoadBasicLayers(map);
+      
+      Layers.AddBoundaryLayers(map);
+      
+      Layers.AddRoadBridgeLayers(map);
+      
+      Layers.AddLabelsLayers(map);
 
-      // example: add custom layer
-      // map.addLayer({
-      //   'id': 'boundary',
-      //   'source': 'protomaps',
-      //   'source-layer': 'boundary',
-      //   'type': 'line',
-      //   'paint': {
-      //       'line-color': 'red'
-      //   }
-      // });
+      setMap(map);
+
+      RemoveBoundaryLayerVisibility(map);
+      
     });
 
+
+    
     const nav = new maplibregl.NavigationControl({
       visualizePitch: true
     });
@@ -101,13 +112,24 @@ export default function MapContainer() {
     map.on("click", (e) => {
       console.log(e);
       console.log([e.lngLat.lng, e.lngLat.lat]);
+      console.log(map.flyTo({
+        zoom: 5,
+        center: [
+          172.33918606365154, -43.10024434830323
+      ],
+      essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      }));
     });
 
-  }, [mapReady]);
+    map.on('zoom', () => {
+      console.log('Current zoom level:', map.getZoom());
+    });
+
+  }, [mapReady, setMap]);
 
   return (
-    <Box sx={{ flex: 1 }}>
-      <div id="myMap" style={{ height: '100%', width: '100%' , position: 'relative'}} />
-    </Box>
+      <Box sx={{ flex: 1 }}>
+        <div id="myMap" style={{ height: '100%', width: '100%' , position: 'relative'}} />
+      </Box>
   );
 }
