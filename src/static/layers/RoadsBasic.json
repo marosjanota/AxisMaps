@@ -1,0 +1,743 @@
+[
+    {
+        "id": "roads_pier",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "==",
+            "kind_detail",
+            "pier"
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                12,
+                0,
+                12.5,
+                0.5,
+                20,
+                16
+            ]
+        }
+    },
+    {
+        "id": "roads_minor_service_casing",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "minzoom": 13,
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "minor_road"
+            ],
+            [
+                "==",
+                "kind_detail",
+                "service"
+            ]
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                13,
+                0,
+                18,
+                8
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                13,
+                0,
+                13.5,
+                0.8
+            ]
+        }
+    },
+    {
+        "id": "roads_minor_casing",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "minor_road"
+            ],
+            [
+                "!=",
+                "kind_detail",
+                "service"
+            ]
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                11,
+                0,
+                12.5,
+                0.5,
+                15,
+                2,
+                18,
+                11
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                12,
+                0,
+                12.5,
+                1
+            ]
+        }
+    },
+    {
+        "id": "roads_link_casing",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "minzoom": 13,
+        "filter": [
+            "has",
+            "is_link"
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                13,
+                0,
+                13.5,
+                1,
+                18,
+                11
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                13,
+                0,
+                13.5,
+                1.5
+            ]
+        }
+    },
+    {
+        "id": "roads_major_casing_late",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "minzoom": 12,
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "major_road"
+            ]
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                6,
+                0,
+                12,
+                1.6,
+                15,
+                3,
+                18,
+                13
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                9,
+                0,
+                9.5,
+                1
+            ]
+        }
+    },
+    {
+        "id": "roads_highway_casing_late",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "minzoom": 12,
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "highway"
+            ],
+            [
+                "!has",
+                "is_link"
+            ]
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                3,
+                0,
+                3.5,
+                0.5,
+                18,
+                15
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                7,
+                0,
+                7.5,
+                1,
+                20,
+                15
+            ]
+        }
+    },
+    {
+        "id": "roads_other",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "in",
+                "kind",
+                "other",
+                "path"
+            ],
+            [
+                "!=",
+                "kind_detail",
+                "pier"
+            ]
+        ],
+        "paint": {
+            "line-color": "#ebebeb",
+            "line-dasharray": [
+                3,
+                1
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                14,
+                0,
+                20,
+                7
+            ]
+        }
+    },
+    {
+        "id": "roads_link",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "has",
+            "is_link"
+        ],
+        "paint": {
+            "line-color": "#ffffff",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                13,
+                0,
+                13.5,
+                1,
+                18,
+                11
+            ]
+        }
+    },
+    {
+        "id": "roads_minor_service",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "minor_road"
+            ],
+            [
+                "==",
+                "kind_detail",
+                "service"
+            ]
+        ],
+        "paint": {
+            "line-color": "#ebebeb",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                13,
+                0,
+                18,
+                8
+            ]
+        }
+    },
+    {
+        "id": "roads_minor",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "minor_road"
+            ],
+            [
+                "!=",
+                "kind_detail",
+                "service"
+            ]
+        ],
+        "paint": {
+            "line-color": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                11,
+                "#ebebeb",
+                16,
+                "#ffffff"
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                11,
+                0,
+                12.5,
+                0.5,
+                15,
+                2,
+                18,
+                11
+            ]
+        }
+    },
+    {
+        "id": "roads_major_casing_early",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "maxzoom": 12,
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "major_road"
+            ]
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                7,
+                0,
+                7.5,
+                0.5,
+                18,
+                13
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                9,
+                0,
+                9.5,
+                1
+            ]
+        }
+    },
+    {
+        "id": "roads_major",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "major_road"
+            ]
+        ],
+        "paint": {
+            "line-color": "#ffffff",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                6,
+                0,
+                12,
+                1.6,
+                15,
+                3,
+                18,
+                13
+            ]
+        }
+    },
+    {
+        "id": "roads_highway_casing_early",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "maxzoom": 12,
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "highway"
+            ],
+            [
+                "!has",
+                "is_link"
+            ]
+        ],
+        "paint": {
+            "line-color": "#e0e0e0",
+            "line-gap-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                3,
+                0,
+                3.5,
+                0.5,
+                18,
+                15
+            ],
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                7,
+                0,
+                7.5,
+                1
+            ]
+        }
+    },
+    {
+        "id": "roads_highway",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "all",
+            [
+                "!has",
+                "is_tunnel"
+            ],
+            [
+                "!has",
+                "is_bridge"
+            ],
+            [
+                "==",
+                "kind",
+                "highway"
+            ],
+            [
+                "!has",
+                "is_link"
+            ]
+        ],
+        "paint": {
+            "line-color": "#ffffff",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                3,
+                0,
+                6,
+                1.1,
+                12,
+                1.6,
+                15,
+                5,
+                18,
+                15
+            ]
+        }
+    },
+    {
+        "id": "roads_rail",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "roads",
+        "filter": [
+            "==",
+            "kind",
+            "rail"
+        ],
+        "paint": {
+            "line-dasharray": [
+                0.3,
+                0.75
+            ],
+            "line-opacity": 0.5,
+            "line-color": "#a7b1b3",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                3,
+                0,
+                6,
+                0.15,
+                18,
+                9
+            ]
+        }
+    }
+]

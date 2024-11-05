@@ -1,0 +1,49 @@
+[
+    {
+        "id": "water_stream",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "water",
+        "minzoom": 14,
+        "filter": [
+            "in",
+            "kind",
+            "stream"
+        ],
+        "paint": {
+            "line-color": "#80deea",
+            "line-width": 0.5
+        }
+    },
+    {
+        "id": "water_river",
+        "type": "line",
+        "source": "protomaps",
+        "source-layer": "water",
+        "minzoom": 9,
+        "filter": [
+            "in",
+            "kind",
+            "river"
+        ],
+        "paint": {
+            "line-color": "#80deea",
+            "line-width": [
+                "interpolate",
+                [
+                    "exponential",
+                    1.6
+                ],
+                [
+                    "zoom"
+                ],
+                9,
+                0,
+                9.5,
+                1,
+                18,
+                12
+            ]
+        }
+    }
+]

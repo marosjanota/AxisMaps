@@ -1,0 +1,77 @@
+[{
+    "id": "boundaries_town",
+    "type": "line",
+    "source": "protomaps",
+    "source-layer": "boundaries",
+    "minZoom": 0, 
+    "maxzoom": 24, 
+    "filter": [
+        "==",
+        "kind_detail",
+        8
+    ],
+    "paint": {
+        "line-color": "#fa0000",
+        "line-width": 2
+        
+    }
+},
+{
+    "id": "boundaries_national",
+    "type": "line",
+    "source": "protomaps",
+    "source-layer": "boundaries",
+    "filter": [
+        "==",
+        "kind_detail",
+        2
+    ],
+    "paint": {
+        "line-color": "#0a0a0a",
+        "line-width": 2
+        
+    },
+    "layout": {
+        "visibility": "visible"
+    }
+},
+{
+    "id": "boundaries_regional",
+    "type": "line",
+    "source": "protomaps",
+    "source-layer": "boundaries",
+    "minzoom" : 0,
+    "filter": [
+        "==",
+        "kind_detail",
+        4
+    ],
+    "paint": {
+        "line-color": "#0a0a0a",
+        "line-width": 0.5,
+        "line-dasharray": [
+            3,
+            2
+        ]
+    }
+},
+{
+    "id": "boundaries_local",
+    "type": "line",
+    "source": "protomaps",
+    "source-layer": "boundaries",
+    "minzoom" : 0,
+    "filter": [
+        "==",
+        "kind_detail",
+        6
+    ],
+    "paint": {
+        "line-color": "#0a0a0a",
+        "line-width": 0.5,
+        "line-dasharray": [
+            3,
+            2
+        ]
+    }
+}]

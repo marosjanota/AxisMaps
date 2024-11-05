@@ -1,0 +1,19 @@
+{
+    "id": "water",
+    "type": "fill",
+    "filter": [
+        "==",
+        [
+            "geometry-type"
+        ],
+        "Polygon"
+    ],
+    "source": "protomaps",
+    "source-layer": "water",
+    "paint": {
+        "fill-color": "#80deea"
+    },
+    "layout": {
+        "visibility": "visible"
+    }
+}
