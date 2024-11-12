@@ -3,6 +3,7 @@ import { Divider, Stack, Typography } from "@mui/material";
 import AxisButton from "../AxisButton";
 import { useMap } from "../context/MapInstanceContext";
 import { services } from '@tomtom-international/web-sdk-services';
+import CountryLanguageSelector from "./CountryLanguageSelector";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -45,19 +46,20 @@ export default function BasicButtonGroup() {
       <AxisButton onClickFunction={() => console.log("Reset map")}>
         Reset Map
       </AxisButton>
-      <AxisButton onClickFunction={() => {
+      <AxisButton
+        onClickFunction={() => {
           if (map) {
-            map.once('render', () => {
+            map.once("render", () => {
               var mapCanvas = map.getCanvas();
-              
-              const img = mapCanvas.toDataURL('image/png');
+
+              const img = mapCanvas.toDataURL("image/png");
               fetch(img)
-                .then(res => res.blob())
-                .then(blob => {
+                .then((res) => res.blob())
+                .then((blob) => {
                   const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
+                  const a = document.createElement("a");
                   a.href = url;
-                  a.download = 'map.png';
+                  a.download = "map.png";
                   document.body.appendChild(a);
                   a.click();
                   document.body.removeChild(a);
@@ -66,18 +68,23 @@ export default function BasicButtonGroup() {
             });
             map.triggerRepaint();
           }
-        }}>
+        }}
+      >
         Assemble Map
       </AxisButton>
-      <AxisButton onClickFunction={() => {
+      <AxisButton
+        onClickFunction={() => {
           if (map) {
-            const visibility = map.getLayer('water').visibility;
-            map.getLayer('water').visibility = visibility === 'visible' ? 'none' : 'visible';
+            const visibility = map.getLayer("water").visibility;
+            map.getLayer("water").visibility =
+              visibility === "visible" ? "none" : "visible";
             map.triggerRepaint();
           }
-        }}>
+        }}
+      >
         Show/Hide water
       </AxisButton>
+      <CountryLanguageSelector />
       {/* <AxisButton onClickFunction={() => {
           if (map) {
             const visibility = map.getLayer('boundaries_national').visibility;

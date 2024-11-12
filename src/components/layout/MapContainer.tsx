@@ -28,7 +28,7 @@ export default function MapContainer() {
       container: "myMap",
       center: location,
       zoom: 0,
-      style: "http://localhost:1810/osmdata/style.json",
+      style: "http://10.0.0.97/staticmapsdata/style.json",
 
 
       // example:
