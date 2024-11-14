@@ -16,6 +16,9 @@ export default function OptionsBorder() {
   const { map } = useMap();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if(!map)
+      return;
+    
     setBorderType(event.target.value as BorderType);
 
     switch(event.target.value as BorderType) {

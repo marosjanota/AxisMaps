@@ -18,6 +18,9 @@ const CountryLanguageSelector: React.FC = () => {
   const { map } = useMap();
   const [selectedCountry, setSelectedCountry] = useState<string>("");
 
+  if(!map)
+    return null;
+
   const handleCountryChange = (event: SelectChangeEvent<string>) => {
     const country = event.target.value;
     setSelectedCountry(country);

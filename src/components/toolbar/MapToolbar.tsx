@@ -4,6 +4,7 @@ import AxisButton from "../AxisButton";
 import { useMap } from "../context/MapInstanceContext";
 import { services } from '@tomtom-international/web-sdk-services';
 import CountryLanguageSelector from "./CountryLanguageSelector";
+import IconSelector from "./IconSelector";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -11,6 +12,9 @@ export default function BasicButtonGroup() {
   const MOMTOM_API_KEY = "3511aLbdzJWwIOPGg5PxuE6AAARooszw";
 
   const search = (): void => {
+    if(!map)
+      return;
+
     const query = document.getElementById('search') as HTMLInputElement;
     console.log("Search ", query.value)
     if (query.value === '') return;
@@ -75,7 +79,9 @@ export default function BasicButtonGroup() {
       <AxisButton
         onClickFunction={() => {
           if (map) {
+            // @ts-ignore
             const visibility = map.getLayer("water").visibility;
+            // @ts-ignore
             map.getLayer("water").visibility =
               visibility === "visible" ? "none" : "visible";
             map.triggerRepaint();
