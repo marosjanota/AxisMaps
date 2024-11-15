@@ -8,6 +8,7 @@ import roadsOthersData from './RoadsOthers.json';
 import roadsTunnelsData from './RoadsTunnels.json';
 import waterBasicData from './WaterBasic.json';
 import waterOthersData from './WaterStreamRivers.json';
+import { AddLayerObject, Map } from 'maplibre-gl';
 
 // *Landuse
 // *roads (runway/taxi) - roadsOthers
@@ -24,67 +25,54 @@ import waterOthersData from './WaterStreamRivers.json';
 // *pois
 // *places
 
-export function AddLanduseLayers(map: any) {
-    const landuses: Array<any> = landuseData;
+export function AddLanduseLayers(map: Map) {
+    landuseData.forEach((landuse) => {
+        map.addLayer(landuse as AddLayerObject);
+    });
+}
 
-    landuses.forEach((landuse: any) => {
-        map.addLayer(landuse);
+export function AddWaterLayers(map: Map) {
+    map.addLayer(waterBasicData as AddLayerObject);
+
+    waterOthersData.forEach((riverAndStream) => {
+        map.addLayer(riverAndStream as AddLayerObject);
     });
 };
 
-export function AddWaterLayers(map: any) {
-    map.addLayer(waterBasicData);
-    const riversAndStreams: Array<any> = waterOthersData;
+export function AddRoadOtherLayers(map: Map) {
+    roadsOthersData.forEach((road) => {
+        map.addLayer(road as AddLayerObject);
+    });
 
-    riversAndStreams.forEach((riverAndStream: any) => {
-        map.addLayer(riverAndStream);
+    roadsTunnelsData.forEach((road) => {
+        map.addLayer(road as AddLayerObject);
     });
 };
 
-export function AddRoadOtherLayers(map: any) {
-    const roadsOthers: Array<any> = roadsOthersData;
-    const roadsTunnels: Array<any> = roadsTunnelsData;
-
-    roadsOthers.forEach((road: any) => {
-        map.addLayer(road);
-    });
-    roadsTunnels.forEach((road: any) => {
-        map.addLayer(road);
+export function AddRoadBasicLayers(map: Map) {
+    roadsBasicData.forEach((road) => {
+        map.addLayer(road as AddLayerObject);
     });
 };
 
-export function AddRoadBasicLayers(map: any) {
-    const roads: Array<any> = roadsBasicData;
-
-    roads.forEach((road: any) => {
-        map.addLayer(road);
+export function AddBoundaryLayers(map: Map) {
+    boundariesData.forEach((boundary) => {
+        map.addLayer(boundary as AddLayerObject);
     });
 };
 
-export function AddBoundaryLayers(map: any) {
-    const boundaries: Array<any> = boundariesData;
-
-    boundaries.forEach((boundary: any) => {
-        map.addLayer(boundary);
+export function AddRoadBridgeLayers(map: Map) {
+    roadsBridgeData.forEach((road) => {
+        map.addLayer(road as AddLayerObject);
     });
 };
 
-export function AddRoadBridgeLayers(map: any) {
-    const roads: Array<any> = roadsBridgeData;
-
-    roads.forEach((road: any) => {
-        map.addLayer(road);
+export function AddLabelsLayers(map: Map) {
+    labelsBasicData.forEach((label) => {
+        map.addLayer(label as AddLayerObject);
     });
-};
 
-export function AddLabelsLayers(map: any) {
-    const labelsBasic: Array<any> = labelsBasicData;
-    const labelsOthers: Array<any> = labelsOthersData;
-
-    labelsBasic.forEach((label: any) => {
-        map.addLayer(label);
-    });
-    labelsOthers.forEach((label: any) => {
-        map.addLayer(label);
+    labelsOthersData.forEach((label) => {
+        map.addLayer(label as AddLayerObject);
     });
 };
