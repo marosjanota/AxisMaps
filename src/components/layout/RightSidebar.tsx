@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import MapToolbar from "../toolbar/MapToolbar";
 
-export default function () {
+export default function RightSidebar() {
   return (
     <Box
       sx={{

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
-import maplibreGl, { Map } from 'maplibre-gl';
+import { Map } from 'maplibre-gl';
 
 interface MapContextProps {
   map: Map | null;

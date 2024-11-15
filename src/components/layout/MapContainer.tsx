@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import maplibregl from 'maplibre-gl';
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -21,8 +21,8 @@ export default function MapContainer() {
     if (!mapReady) return;
 
 
-    let protocol = new Protocol();
-    maplibregl.addProtocol("pmtiles",protocol.tile);
+    const protocol = new Protocol();
+    maplibregl.addProtocol("pmtiles", protocol.tile);
 
     const map = new maplibregl.Map({
       container: "myMap",
@@ -69,11 +69,11 @@ export default function MapContainer() {
     });
 
     map.on('load', () => {
-      map.getStyle().layers.forEach((layer) => {
+      // map.getStyle().layers.forEach((layer) => {
         
-        // // console.log(layer.id);
-      }
-      );
+      //   // // console.log(layer.id);
+      // }
+      // );
       map.fitBounds([
         [32.958984, -5.353521],
         [43.50585, 5.615985]
