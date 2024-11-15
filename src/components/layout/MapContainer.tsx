@@ -20,16 +20,14 @@ export default function MapContainer() {
   useEffect(() => {
     if (!mapReady) return;
 
-
     const protocol = new Protocol();
     maplibregl.addProtocol("pmtiles", protocol.tile);
 
     const map = new maplibregl.Map({
       container: "myMap",
       center: location,
-      zoom: 0,
+      zoom: 12,
       style: "http://10.0.0.97/staticmapsdata/style.json",
-
 
       // example:
       // style: "https://demotiles.maplibre.org/style.json"
@@ -71,6 +69,18 @@ export default function MapContainer() {
     map.on('load', () => {
       // map.getStyle().layers.forEach((layer) => {
         
+        // // console.log(layer.id);
+      // }
+      // );
+      // map.fitBounds([
+      //   [32.958984, -5.353521],
+      //   [43.50585, 5.615985]
+      // ]);
+
+      console.log('Current map center:', map.getCenter());
+      console.log('Marker coordinates:', location);
+
+
       //   // // console.log(layer.id);
       // }
       // );
@@ -96,10 +106,7 @@ export default function MapContainer() {
       setMap(map);
 
       RemoveBoundaryLayerVisibility(map);
-      
     });
-
-
     
     const nav = new maplibregl.NavigationControl({
       visualizePitch: true
@@ -110,15 +117,21 @@ export default function MapContainer() {
     window.map = map;
 
     map.on("click", (e) => {
-      console.log(e);
       console.log([e.lngLat.lng, e.lngLat.lat]);
-      console.log(map.flyTo({
-        zoom: 5,
-        center: [
-          172.33918606365154, -43.10024434830323
-      ],
-      essential: true // this animation is considered essential with respect to prefers-reduced-motion
-      }));
+      // console.log(map.flyTo({
+      //   zoom: 5,
+      //   center: [
+      //     172.33918606365154, -43.10024434830323
+      // ],
+      // essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      // }));
+      // console.log(map.flyTo({
+      //   zoom: 5,
+      //   center: [
+      //     172.33918606365154, -43.10024434830323
+      // ],
+      // essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      // }));
     });
 
     map.on('zoom', () => {

@@ -4,6 +4,7 @@ import AxisButton from "../AxisButton";
 import { useMap } from "../context/MapInstanceContext";
 import { services } from '@tomtom-international/web-sdk-services';
 import CountryLanguageSelector from "./CountryLanguageSelector";
+import IconSelector from "./IconSelector";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -217,7 +218,7 @@ export default function BasicButtonGroup() {
         onClickFunction={() => {
           if (map) {
             const layerId = "water";
-            
+
             const currentVisibility = map.getLayoutProperty(layerId, "visibility");
             
             if (currentVisibility === "visible") {
@@ -231,6 +232,7 @@ export default function BasicButtonGroup() {
         Show/Hide water
       </AxisButton>
       <CountryLanguageSelector />
+      <IconSelector />
       {/* <AxisButton onClickFunction={() => {
           if (map) {
             const visibility = map.getLayer('boundaries_national').visibility;
