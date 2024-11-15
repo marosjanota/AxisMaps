@@ -22,8 +22,8 @@ export default function BasicButtonGroup() {
       query: query.value,
     }).then((response) => {
       if (response && response.results && response.results.length > 0) {
-        let latitude = response.results[0]?.position?.lat as number;
-        let longitude = response.results[0]?.position?.lng as number;
+        const latitude = response.results[0]?.position?.lat as number;
+        const longitude = response.results[0]?.position?.lng as number;
         console.log("latitude ", latitude);
         console.log("longitude ", longitude);
         map.setCenter({lng: longitude, lat:latitude} )
@@ -191,7 +191,7 @@ export default function BasicButtonGroup() {
         onClickFunction={() => {
           if (map) {
             map.once("render", () => {
-              var mapCanvas = map.getCanvas();
+              const mapCanvas = map.getCanvas();
 
               const img = mapCanvas.toDataURL("image/png");
               fetch(img)
@@ -216,12 +216,15 @@ export default function BasicButtonGroup() {
       <AxisButton
         onClickFunction={() => {
           if (map) {
-            // @ts-ignore
-            const visibility = map.getLayer("water").visibility;
-            // @ts-ignore
-            map.getLayer("water").visibility =
-              visibility === "visible" ? "none" : "visible";
-            map.triggerRepaint();
+            const layerId = "water";
+            
+            const currentVisibility = map.getLayoutProperty(layerId, "visibility");
+            
+            if (currentVisibility === "visible") {
+                map.setLayoutProperty(layerId, "visibility", "none");
+            } else if (currentVisibility === "none") {
+                map.setLayoutProperty(layerId, "visibility", "visible");
+            }
           }
         }}
       >
