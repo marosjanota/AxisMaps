@@ -5,6 +5,7 @@ import { useMap } from "../context/MapInstanceContext";
 import { services } from '@tomtom-international/web-sdk-services';
 import CountryLanguageSelector from "./CountryLanguageSelector";
 import IconSelector from "./IconSelector";
+import PolygonMenu from "./PolygonMenu";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -32,144 +33,6 @@ export default function BasicButtonGroup() {
       }
     });
   }
-
-  const doubleNumbers: [number, number][] = [];
-
-  if (map) {
-
-    // map click
-    map.on("click", (e: maplibregl.MapMouseEvent) => {
-      const polygongenerate = document.getElementById('polygongenerate') as HTMLInputElement;
-      if (!polygongenerate.checked) {
-        doubleNumbers.length = 0;
-        console.log(map.flyTo({
-          zoom: 5,
-          center: [
-            172.33918606365154, -43.10024434830323
-          ],
-          essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        }));
-
-        return;
-      }
-
-      const polygoncolor = document.getElementById('polygoncolor') as HTMLInputElement;
-      console.log("polygoncolor ", polygoncolor.value)
-      const polygonopacity = document.getElementById('polygonopacity') as HTMLInputElement;
-      console.log("polygonopacity ", polygonopacity.value)
-      const opacity = parseFloat(polygonopacity.value);
-      console.log(e);
-      console.log([e.lngLat.lng, e.lngLat.lat]);
-      doubleNumbers.push([e.lngLat.lng, e.lngLat.lat]);
-      console.log('style', map.getStyle());
-
-      if (doubleNumbers.length > 2) {
-        if (map.getLayer('maine2')) {
-          console.log('removeLayer maine2');
-          map.removeLayer('maine2');
-        }
-
-        if (map.getSource('maine2')) {
-          console.log('removeSource maine2');
-          map.removeSource('maine2');
-        }
-
-        map.addSource('maine2', {
-          'type': 'geojson',
-          'data': {
-            "type": "FeatureCollection",
-            "features": [
-              {
-                "type": "Feature",
-                "geometry": {
-                  "type": "Polygon",
-                  "coordinates": [
-                    doubleNumbers
-                  ]
-                },
-                "properties": {}
-              }
-            ]
-          }
-        });
-
-        map.addLayer({
-          'id': 'maine2',
-          'type': 'fill',
-          'source': 'maine2',
-          'layout': {},
-          'paint': {
-            'fill-color': polygoncolor.value,
-            'fill-opacity': opacity
-          }
-        });
-      }      
-    }); // map click
-
-
-    // map mousemove
-    map.on("mousemove", (e: maplibregl.MapMouseEvent) => {
-      const polygongenerate = document.getElementById('polygongenerate') as HTMLInputElement;
-      console.log("polygongenerate ", polygongenerate.checked)
-      if (!polygongenerate.checked)
-      {
-           doubleNumbers.length = 0;
-           return;
-      }
-
-      if (doubleNumbers.length === 3 || doubleNumbers.length === 5) {
-        const polygoncolor = document.getElementById('polygoncolor') as HTMLInputElement;
-        console.log("polygoncolor ", polygoncolor.value)
-        doubleNumbers.push([e.lngLat.lng, e.lngLat.lat]);
-
-        if (map.getLayer('maine2')) {
-          console.log('removeLayer maine2');
-          map.removeLayer('maine2');
-        }
-
-        if (map.getSource('maine2')) {
-          console.log('removeSource maine2');
-          map.removeSource('maine2');
-        }
-
-        map.addSource('maine2', {
-          'type': 'geojson',
-          'data': {
-            "type": "FeatureCollection",
-            "features": [
-              {
-                "type": "Feature",
-                "geometry": {
-                  "type": "Polygon",
-                  "coordinates": [
-                    doubleNumbers
-                  ]
-                },
-                "properties": {}
-              }
-            ]
-          }
-        });
-
-        map.addLayer({
-          'id': 'maine2',
-          'type': 'fill',
-          'source': 'maine2',
-          'layout': {},
-          'paint': {
-            'fill-color': polygoncolor.value,
-            'fill-opacity': 0.8
-          }
-        });
-
-        doubleNumbers.splice(doubleNumbers.length - 1, 1);
-      }
-
-    }); // map mousemove
-  }
-
-
-
 
   return (
     <Stack spacing={2}>
@@ -242,11 +105,7 @@ export default function BasicButtonGroup() {
         }}>
         Show/Hide national borders
       </AxisButton> */}
-      <Typography variant="h6">Polygons</Typography>
-      <input type="checkbox" id="polygongenerate" />
-      {/* <FormControlLabel id="polygongenerate2" control={<Checkbox />} label="Generate polynom" /> */}
-      <input type="text" id="polygoncolor" defaultValue={"#9999"} />
-      <input type="text" id="polygonopacity" defaultValue={"0.8"} />
+    <PolygonMenu></PolygonMenu>
     </Stack>
   );
 }
