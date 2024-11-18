@@ -2,45 +2,18 @@ import * as React from "react";
 import { Divider, Stack, Typography } from "@mui/material";
 import AxisButton from "../AxisButton";
 import { useMap } from "../context/MapInstanceContext";
-import { services } from '@tomtom-international/web-sdk-services';
 import CountryLanguageSelector from "./CountryLanguageSelector";
 import IconSelector from "./IconSelector";
 import PolygonMenu from "./PolygonMenu";
+import SearchMenu from "./SearchMenu";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
 
-  const MOMTOM_API_KEY = "3511aLbdzJWwIOPGg5PxuE6AAARooszw";
-
-  const search = (): void => {
-    if(!map)
-      return;
-
-    const query = document.getElementById('search') as HTMLInputElement;
-    console.log("Search ", query.value)
-    if (query.value === '') return;
-    services.fuzzySearch({
-      key: MOMTOM_API_KEY,
-      query: query.value,
-    }).then((response) => {
-      if (response && response.results && response.results.length > 0) {
-        const latitude = response.results[0]?.position?.lat as number;
-        const longitude = response.results[0]?.position?.lng as number;
-        console.log("latitude ", latitude);
-        console.log("longitude ", longitude);
-        map.setCenter({lng: longitude, lat:latitude} )
-        map.zoomTo(14, {duration: 4000});
-      }
-    });
-  }
-
   return (
     <Stack spacing={2}>
       <Typography variant="h6">Map toolbar</Typography>
-      <input type="text" id="search" />
-      <AxisButton onClickFunction={() => search()}>
-        Search
-      </AxisButton>
+      <SearchMenu></SearchMenu>
       <AxisButton onClickFunction={() => console.log("Zoom In")}>
         Zoom In
       </AxisButton>
