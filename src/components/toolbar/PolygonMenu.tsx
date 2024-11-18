@@ -40,43 +40,9 @@ export default function PolynomMenu() {
 
             doubleNumbers.push([e.lngLat.lng, e.lngLat.lat]);
             if (doubleNumbers.length > 2) {
-                if (map.getLayer(layerId)) {
-                    map.removeLayer(layerId);
-                }
-
-                if (map.getSource(sourceId)) {
-                    map.removeSource(sourceId);
-                }
-
-                map.addSource(sourceId, {
-                    'type': 'geojson',
-                    'data': {
-                        "type": "FeatureCollection",
-                        "features": [
-                            {
-                                "type": "Feature",
-                                "geometry": {
-                                    "type": "Polygon",
-                                    "coordinates": [
-                                        doubleNumbers
-                                    ]
-                                },
-                                "properties": {}
-                            }
-                        ]
-                    }
-                });
-
-                map.addLayer({
-                    'id': layerId,
-                    'type': 'fill',
-                    'source': sourceId,
-                    'layout': {},
-                    'paint': {
-                        'fill-color': polygonColor,
-                        'fill-opacity': parseFloat(polygonOpacity)
-                    }
-                });
+                removePolygon();
+                addSource();
+                addLayer(parseFloat(polygonOpacity), polygonColor);
             }
         }); // map click
 
@@ -90,44 +56,9 @@ export default function PolynomMenu() {
 
             if (doubleNumbers.length === 3 || doubleNumbers.length === 5) {
                 doubleNumbers.push([e.lngLat.lng, e.lngLat.lat]);
-
-                if (map.getLayer(layerId)) {
-                    map.removeLayer(layerId);
-                }
-
-                if (map.getSource(sourceId)) {
-                    map.removeSource(sourceId);
-                }
-
-                map.addSource(sourceId, {
-                    'type': 'geojson',
-                    'data': {
-                        "type": "FeatureCollection",
-                        "features": [
-                            {
-                                "type": "Feature",
-                                "geometry": {
-                                    "type": "Polygon",
-                                    "coordinates": [
-                                        doubleNumbers
-                                    ]
-                                },
-                                "properties": {}
-                            }
-                        ]
-                    }
-                });
-
-                map.addLayer({
-                    'id': layerId,
-                    'type': 'fill',
-                    'source': sourceId,
-                    'layout': {},
-                    'paint': {
-                        'fill-color': polygonColor,
-                        'fill-opacity': parseFloat(polygonOpacity)
-                    }
-                });
+                removePolygon();
+                addSource();
+                addLayer(parseFloat(polygonOpacity), polygonColor);
 
                 doubleNumbers.splice(doubleNumbers.length - 1, 1);
             }
@@ -145,42 +76,9 @@ export default function PolynomMenu() {
         }
 
         if (map) {
-            if (map.getLayer(layerId)) {
-                map.removeLayer(layerId);
-            }
-            if (map.getSource(sourceId)) {
-                map.removeSource(sourceId);
-            }
-
-            map.addSource(sourceId, {
-                'type': 'geojson',
-                'data': {
-                    "type": "FeatureCollection",
-                    "features": [
-                        {
-                            "type": "Feature",
-                            "geometry": {
-                                "type": "Polygon",
-                                "coordinates": [
-                                    doubleNumbers
-                                ]
-                            },
-                            "properties": {}
-                        }
-                    ]
-                }
-            });
-
-            map.addLayer({
-                'id': layerId,
-                'type': 'fill',
-                'source': sourceId,
-                'layout': {},
-                'paint': {
-                    'fill-color': newColor,
-                    'fill-opacity': parseFloat(polygonOpacity)
-                }
-            });
+            removePolygon();
+            addSource();
+            addLayer(parseFloat(polygonOpacity), newColor);
         }
         doubleNumbers.length = 0;
     };
@@ -195,13 +93,20 @@ export default function PolynomMenu() {
         }
 
         if (map) {
-            if (map.getLayer(layerId)) {
-                map.removeLayer(layerId);
-            }
-            if (map.getSource(sourceId)) {
-                map.removeSource(sourceId);
-            }
+            removePolygon();
+            addSource();
+            addLayer(parseFloat(newOpacity), polygonColor);
+        }
+        doubleNumbers.length = 0;
+    };
 
+    const handlePolygonCreateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCreatePolygon(!createPolygon);
+        doubleNumbers.length = 0;
+    };
+
+    function addSource() {
+        if (map) {
             map.addSource(sourceId, {
                 'type': 'geojson',
                 'data': {
@@ -220,25 +125,35 @@ export default function PolynomMenu() {
                     ]
                 }
             });
+        }
+    }
 
+    function addLayer(opacy: number, color: string) {
+        if (map) {
             map.addLayer({
                 'id': layerId,
                 'type': 'fill',
                 'source': sourceId,
                 'layout': {},
                 'paint': {
-                    'fill-color': polygonColor,
-                    'fill-opacity': parseFloat(newOpacity)
+                    'fill-color': color,
+                    'fill-opacity': opacy
                 }
             });
         }
-        doubleNumbers.length = 0;
-    };
+    }
 
-    const handlePolygonCreateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCreatePolygon(!createPolygon);
-        doubleNumbers.length = 0;
-    };
+    function removePolygon() {
+        if (map) {
+            if (map.getLayer(layerId)) {
+                map.removeLayer(layerId);
+            }
+
+            if (map.getSource(sourceId)) {
+                map.removeSource(sourceId);
+            }
+        }
+    }
 
     return (
         <Stack spacing={2}>
