@@ -73,15 +73,13 @@ const IconSelector: React.FC = () => {
           layout: {
             "icon-image": "{icon}",
             "icon-size": 1.5,
-            "icon-allow-overlap": true,
+           // "icon-allow-overlap": true,
           },
         });
       } else {
         const geoJsonSource = map.getSource("points") as GeoJSONSource;
         geoJsonSource.setData(pointsData);
       }
-
-      map.triggerRepaint();
     };
 
     const handleClick = (e: MapMouseEvent & object) => {

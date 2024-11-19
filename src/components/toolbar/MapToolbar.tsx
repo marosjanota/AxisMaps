@@ -6,6 +6,7 @@ import CountryLanguageSelector from "./CountryLanguageSelector";
 import IconSelector from "./IconSelector";
 import PolygonMenu from "./PolygonMenu";
 import SearchMenu from "./SearchMenu";
+import LabelEditor from "./LabelEditor";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -69,6 +70,7 @@ export default function BasicButtonGroup() {
       </AxisButton>
       <CountryLanguageSelector />
       <IconSelector />
+      <LabelEditor />
       {/* <AxisButton onClickFunction={() => {
           if (map) {
             const visibility = map.getLayer('boundaries_national').visibility;

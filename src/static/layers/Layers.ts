@@ -1,6 +1,6 @@
 import boundariesData from './Boundaries.json'; // see https://osm-boundaries.com/map
-import labelsBasicData from './LabelsBasic.json';
-import labelsOthersData from './LabelsOthers.json';
+import labelsBasicData from './normalizedLayers/LabelsBasic_normalized_fonts.json';
+import labelsOthersData from './normalizedLayers/LabelsOther_normalized_fonts.json';
 import landuseData from './Landuse.json';
 import roadsBasicData from './RoadsBasic.json';
 import roadsBridgeData from './RoadsBridges.json';
