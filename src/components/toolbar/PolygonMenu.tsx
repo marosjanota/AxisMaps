@@ -27,14 +27,7 @@ export default function PolynomMenu() {
             const polygongenerate = document.getElementById('polygongenerate') as HTMLInputElement;
             if (!polygongenerate.checked) {
                 doubleNumbers.length = 0;
-                console.log(map.flyTo({
-                    zoom: 5,
-                    center: [
-                        172.33918606365154, -43.10024434830323
-                    ],
-                    essential: true // this animation is considered essential with respect to prefers-reduced-motion
-                }));
-
+            
                 return;
             }
 
