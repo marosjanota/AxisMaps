@@ -9,6 +9,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { GeoJSONSource, MapMouseEvent } from "maplibre-gl";
+import IconTextEditor from "./IconTextEditor";
 
 const pointsData: GeoJSON.FeatureCollection<GeoJSON.Point> = {
   type: "FeatureCollection",
@@ -127,7 +128,9 @@ const IconSelector: React.FC = () => {
             </MenuItem>
           ))}
         </Select>
+        <IconTextEditor />
       </FormControl>
+      
     </Box>
   );
 };

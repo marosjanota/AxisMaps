@@ -118,7 +118,7 @@ const LabelEditor: React.FC = () => {
   return (
     <Box sx={{ maxWidth: 400, margin: "auto", mt: 4 }}>
       <TextField
-        label="Enter Text"
+        label="Enter Colored Label Text"
         variant="outlined"
         fullWidth
         value={text}
