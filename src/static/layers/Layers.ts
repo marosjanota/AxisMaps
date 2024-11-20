@@ -1,6 +1,6 @@
 import boundariesData from './Boundaries.json'; // see https://osm-boundaries.com/map
 import labelsBasicData from './LabelsBasic.json';
-import labelsOthersData from './LabelsOthers.json';
+import labelsOthersJson from './LabelsOthers.json';
 import landuseData from './Landuse.json';
 import roadsBasicData from './RoadsBasic.json';
 import roadsBridgeData from './RoadsBridges.json';
@@ -8,22 +8,22 @@ import roadsOthersData from './RoadsOthers.json';
 import roadsTunnelsData from './RoadsTunnels.json';
 import waterBasicData from './WaterBasic.json';
 import waterOthersData from './WaterStreamRivers.json';
+import { LayerSpecification } from 'maplibre-gl';
 
-// *Landuse
-// *roads (runway/taxi) - roadsOthers
-// landuse (runway/taxi)
-// *water
-// *water rest
-// landuse pedestrian/pier
-// *roads  tunnels
-// buildings
-// *roads
-// *boundaries
-// *roads bridges
-// *labels (water,roads)
-// *pois
-// *places
+export const labelsOthersData: LayerSpecification[] = labelsOthersJson as LayerSpecification[];
 
+export {
+  boundariesData,
+  labelsBasicData,
+  landuseData,
+  roadsBasicData,
+  roadsBridgeData,
+  roadsOthersData,
+  roadsTunnelsData,
+  waterBasicData,
+  waterOthersData,
+};
+  
 export function AddLanduseLayers(map: any) {
     const landuses: Array<any> = landuseData;
 

@@ -1889,9 +1889,8 @@
         "source": "protomaps",
         "source-layer": "places",
         "filter": [
-            "==",
-            "kind",
-            "locality"
+            "all",
+            ["==", "kind", "locality"]
         ],
         "layout": {
             "icon-image": [

@@ -4,35 +4,10 @@
         "protomaps": {
             "type": "vector",
             "attribution": "<a href=\"https://github.com/protomaps/basemaps\">Protomaps</a> © <a href=\"https://openstreetmap.org\">OpenStreetMap</a>",
-            "url": "pmtiles://http://localhost:1810/osmdata/20241022.pmtiles"
+            "url": "pmtiles://http://localhost:1810/osmdata/20241104.pmtiles"
         }
     },
-    "layers": [
-        {
-            "id": "background",
-            "type": "background",
-            "paint": {
-                "background-color": "#cccccc"
-            }
-        },
-        {
-            "id": "earth",
-            "type": "fill",
-            "filter": [
-                "==",
-                [
-                    "geometry-type"
-                ],
-                "Polygon"
-            ],
-            "source": "protomaps",
-            "source-layer": "earth",
-            "paint": {
-                "fill-color": "#e0e0e0"
-            }
-        },
-        
-        
+    "layers": [       
         {
             "id": "buildings",
             "type": "fill",
