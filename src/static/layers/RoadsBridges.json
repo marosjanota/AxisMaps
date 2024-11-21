@@ -4,6 +4,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -19,7 +22,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -41,6 +44,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -54,7 +60,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -92,6 +98,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -106,7 +115,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -146,6 +155,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -160,7 +172,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -198,6 +210,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -213,7 +228,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#ebebeb",
+            "line-color": "#e3e300",
             "line-dasharray": [
                 2,
                 1
@@ -240,6 +255,9 @@
         "source": "protomaps",
         "source-layer": "roads",
         "minzoom": 12,
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "all",
             [
@@ -253,7 +271,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#ffffff",
+            "line-color": "#F6F1E4",
             "line-width": [
                 "interpolate",
                 [
@@ -279,6 +297,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -292,7 +313,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#ffffff",
+            "line-color": "#F6F1E4",
             "line-width": [
                 "interpolate",
                 [
@@ -317,6 +338,9 @@
         "source": "protomaps",
         "source-layer": "roads",
         "minzoom": 12,
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "all",
             [
@@ -330,7 +354,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#f5f5f5",
+            "line-color": "#F6F1E4",
             "line-width": [
                 "interpolate",
                 [
@@ -357,6 +381,9 @@
         "source": "protomaps",
         "source-layer": "roads",
         "minzoom": 12,
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "all",
             [
@@ -374,7 +401,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -414,6 +441,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "all",
             [
@@ -431,7 +461,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#ffffff",
+            "line-color": "#F6F1E4",
             "line-width": [
                 "interpolate",
                 [

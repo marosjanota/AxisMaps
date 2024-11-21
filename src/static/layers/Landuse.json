@@ -67,6 +67,9 @@
         "type": "fill",
         "source": "protomaps",
         "source-layer": "landuse",
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "==",
             "kind",
@@ -169,6 +172,9 @@
         "type": "fill",
         "source": "protomaps",
         "source-layer": "landuse",
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "in",
             "kind",
@@ -206,18 +212,22 @@
             "fill-color": "#e7e7e7"
         }
     },
+
     {
         "id": "landuse_sand",
         "type": "fill",
         "source": "protomaps",
         "source-layer": "landuse",
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "==",
             "kind",
             "sand"
         ],
         "paint": {
-            "fill-color": "#e2e0d7"
+            "fill-color": "rgba(255, 243, 215, 1)"
         }
     },
     {
@@ -242,6 +252,9 @@
         "type": "fill",
         "source": "protomaps",
         "source-layer": "landuse",
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "==",
             "kind",

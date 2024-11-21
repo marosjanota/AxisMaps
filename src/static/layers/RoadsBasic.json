@@ -4,13 +4,16 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "==",
             "kind_detail",
             "pier"
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-width": [
                 "interpolate",
                 [
@@ -35,6 +38,9 @@
         "source": "protomaps",
         "source-layer": "roads",
         "minzoom": 13,
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "all",
             [
@@ -57,7 +63,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -93,6 +99,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "all",
             [
@@ -115,7 +124,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -155,13 +164,16 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 13,
         "filter": [
             "has",
             "is_link"
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -199,6 +211,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -217,7 +232,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -257,6 +272,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "minzoom": 12,
         "filter": [
             "all",
@@ -279,7 +297,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -319,6 +337,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "all",
             [
@@ -342,7 +363,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#ebebeb",
+            "line-color": "#e3e300",
             "line-dasharray": [
                 3,
                 1
@@ -368,6 +389,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "has",
             "is_link"
@@ -397,6 +421,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "filter": [
             "all",
             [
@@ -445,38 +472,17 @@
             "all",
             [
                 "!has",
-                "is_tunnel"
-            ],
-            [
-                "!has",
                 "is_bridge"
             ],
             [
                 "==",
                 "kind",
                 "minor_road"
-            ],
-            [
-                "!=",
-                "kind_detail",
-                "service"
             ]
         ],
         "paint": {
-            "line-color": [
-                "interpolate",
-                [
-                    "exponential",
-                    1.6
-                ],
-                [
-                    "zoom"
-                ],
-                11,
-                "#ebebeb",
-                16,
-                "#ffffff"
-            ],
+            "line-color": "#FFFFFF"
+            ,
             "line-width": [
                 "interpolate",
                 [
@@ -502,6 +508,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "maxzoom": 12,
         "filter": [
             "all",
@@ -520,7 +529,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -562,10 +571,6 @@
             "all",
             [
                 "!has",
-                "is_tunnel"
-            ],
-            [
-                "!has",
                 "is_bridge"
             ],
             [
@@ -575,7 +580,7 @@
             ]
         ],
         "paint": {
-            "line-color": "#ffffff",
+            "line-color": "#E0E2E5",
             "line-width": [
                 "interpolate",
                 [
@@ -601,29 +606,20 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "none"
+        },
         "maxzoom": 12,
         "filter": [
             "all",
             [
-                "!has",
-                "is_tunnel"
-            ],
-            [
-                "!has",
-                "is_bridge"
-            ],
-            [
                 "==",
                 "kind",
                 "highway"
-            ],
-            [
-                "!has",
-                "is_link"
             ]
         ],
         "paint": {
-            "line-color": "#e0e0e0",
+            "line-color": "#e3e300",
             "line-gap-width": [
                 "interpolate",
                 [
@@ -665,29 +661,21 @@
             "all",
             [
                 "!has",
-                "is_tunnel"
-            ],
-            [
-                "!has",
                 "is_bridge"
             ],
             [
                 "==",
                 "kind",
                 "highway"
-            ],
-            [
-                "!has",
-                "is_link"
             ]
         ],
         "paint": {
-            "line-color": "#ffffff",
+            "line-color": "#AFB1B6",
             "line-width": [
                 "interpolate",
                 [
                     "exponential",
-                    1.6
+                    10
                 ],
                 [
                     "zoom"
@@ -710,6 +698,9 @@
         "type": "line",
         "source": "protomaps",
         "source-layer": "roads",
+        "layout": {
+            "visibility": "visible"
+        },
         "filter": [
             "==",
             "kind",
@@ -721,7 +712,7 @@
                 0.75
             ],
             "line-opacity": 0.5,
-            "line-color": "#a7b1b3",
+            "line-color": "#000000",
             "line-width": [
                 "interpolate",
                 [

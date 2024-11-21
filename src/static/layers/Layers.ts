@@ -9,7 +9,9 @@ import roadsTunnelsData from './RoadsTunnels.json';
 import waterBasicData from './WaterBasic.json';
 import waterOthersData from './WaterStreamRivers.json';
 import { AddLayerObject, Map } from 'maplibre-gl';
+import landcoverData from './Landcover.json';
 
+// *Landcover
 // *Landuse
 // *roads (runway/taxi) - roadsOthers
 // landuse (runway/taxi)
@@ -24,6 +26,12 @@ import { AddLayerObject, Map } from 'maplibre-gl';
 // *labels (water,roads)
 // *pois
 // *places
+
+export function AddLandcoverLayers(map: Map) {
+    landcoverData.forEach((landcover) => {
+        map.addLayer(landcover as AddLayerObject);
+    });
+};
 
 export function AddLanduseLayers(map: Map) {
     landuseData.forEach((landuse) => {

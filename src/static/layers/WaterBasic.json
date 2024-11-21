@@ -11,7 +11,7 @@
     "source": "protomaps",
     "source-layer": "water",
     "paint": {
-        "fill-color": "#80deea"
+        "fill-color": "#A4D8F4"
     },
     "layout": {
         "visibility": "visible"
