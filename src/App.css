@@ -126,3 +126,27 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.popup {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  background: var(--color-mui-background);
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.area-list {
+  max-height: 400px; /* Adjust the height as needed */
+  overflow-y: auto;
+  overflow-x: hidden;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.area-list li{
+  white-space: nowrap;
+}
