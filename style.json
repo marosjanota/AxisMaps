@@ -4,7 +4,7 @@
         "protomaps": {
             "type": "vector",
             "attribution": "<a href=\"https://github.com/protomaps/basemaps\">Protomaps</a> © <a href=\"https://openstreetmap.org\">OpenStreetMap</a>",
-            "url": "pmtiles://http://localhost:1810/osmdata/20241022.pmtiles"
+            "url": "pmtiles://http://10.0.0.97/staticmapsdata/20241106.pmtiles"
         }
     },
     "layers": [
@@ -32,7 +32,6 @@
             }
         },
         
-        
         {
             "id": "buildings",
             "type": "fill",
@@ -43,9 +42,8 @@
                 "fill-opacity": 0.5
             }
         }
-        
-        
+ 
     ],
-    "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v3/light",
-    "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf"
+    "sprite": "https://demotiles.maplibre.org/styles/osm-bright-gl-style/sprite",
+    "glyphs": "http://10.0.0.97/staticmapsdata/glyphs/{fontstack}/{range}.pbf"
 }
