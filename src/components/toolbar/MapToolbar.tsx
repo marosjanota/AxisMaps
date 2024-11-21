@@ -7,6 +7,8 @@ import IconSelector from "./IconSelector";
 import PolygonMenu from "./PolygonMenu";
 import SearchMenu from "./SearchMenu";
 import LabelEditor from "./LabelEditor";
+import * as Layers from "../../static/layers/Layers";
+import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -15,14 +17,39 @@ export default function BasicButtonGroup() {
     <Stack spacing={2}>
       <Typography variant="h6">Map toolbar</Typography>
       <SearchMenu></SearchMenu>
-      <AxisButton onClickFunction={() => console.log("Zoom In")}>
+      <AxisButton onClickFunction={() => {
+        map?.setZoom(map?.getZoom() + 0.5);
+      }}>
         Zoom In
       </AxisButton>
-      <AxisButton onClickFunction={() => console.log("Zoom Out")}>
+      <AxisButton onClickFunction={() => {
+        map?.setZoom(map?.getZoom() - 0.5);
+      }}>
         Zoom Out
       </AxisButton>
       <Divider />
-      <AxisButton onClickFunction={() => console.log("Reset map")}>
+      <AxisButton onClickFunction={() => {
+        map?.getStyle().layers?.forEach((layer) => {
+          if (!["background", "earth", "buildings"].includes(layer.id))
+          {
+            map?.removeLayer(layer.id);
+          }
+        });
+
+        map?.setCenter([-74.0149, 40.7110]);
+        map?.setZoom(0);
+        map?.setBearing(0);
+        map?.setPitch(0);
+        Layers.AddLandcoverLayers(map!);
+        Layers.AddLanduseLayers(map!);
+        Layers.AddWaterLayers(map!);
+        Layers.AddRoadOtherLayers(map!);
+        Layers.AddRoadBasicLayers(map!);
+        Layers.AddBoundaryLayers(map!);
+        Layers.AddRoadBridgeLayers(map!);
+        Layers.AddLabelsLayers(map!);
+        RemoveBoundaryLayerVisibility(map!);
+      }}>
         Reset Map
       </AxisButton>
       <AxisButton
@@ -55,7 +82,6 @@ export default function BasicButtonGroup() {
         onClickFunction={() => {
           if (map) {
             const layerId = "water";
-
             const currentVisibility = map.getLayoutProperty(layerId, "visibility");
             
             if (currentVisibility === "visible") {
