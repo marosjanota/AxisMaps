@@ -8,7 +8,7 @@ import * as Layers from "../../static/layers/Layers";
 import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
 
 export default function MapContainer() {
-  const location: [number, number] = [151.2093, -33.8688];
+  const location: [number, number] = [-74.0149, 40.7110];
   
   const [mapReady, setMapReady] = useState(false);
 
@@ -26,7 +26,10 @@ export default function MapContainer() {
     const map = new maplibregl.Map({
       container: "myMap",
       center: location,
-      zoom: 12,
+      // zoom: 15.5,
+      
+      // style: "http://10.0.0.97/staticmapsdata/fullstyle_ubuntu.json",
+      // style: "http://localhost:1810/osmdata/style.json",
       style: "http://10.0.0.97/staticmapsdata/style.json",
 
       // example:
@@ -67,28 +70,8 @@ export default function MapContainer() {
     });
 
     map.on('load', () => {
-      // map.getStyle().layers.forEach((layer) => {
-        
-        // // console.log(layer.id);
-      // }
-      // );
-      // map.fitBounds([
-      //   [32.958984, -5.353521],
-      //   [43.50585, 5.615985]
-      // ]);
-
-      console.log('Current map center:', map.getCenter());
-      console.log('Marker coordinates:', location);
-
-
-      //   // // console.log(layer.id);
-      // }
-      // );
-      map.fitBounds([
-        [32.958984, -5.353521],
-        [43.50585, 5.615985]
-      ]);
-
+      Layers.AddLandcoverLayers(map);
+      
       Layers.AddLanduseLayers(map);
     
       Layers.AddWaterLayers(map);
@@ -117,32 +100,26 @@ export default function MapContainer() {
     window.map = map;
 
     map.on("click", (e) => {
-      console.log([e.lngLat.lng, e.lngLat.lat]);
-      // console.log(map.flyTo({
-      //   zoom: 5,
-      //   center: [
-      //     172.33918606365154, -43.10024434830323
-      // ],
-      // essential: true // this animation is considered essential with respect to prefers-reduced-motion
-      // }));
-      // console.log(map.flyTo({
-      //   zoom: 5,
-      //   center: [
-      //     172.33918606365154, -43.10024434830323
-      // ],
-      // essential: true // this animation is considered essential with respect to prefers-reduced-motion
-      // }));
-    });
-
-    map.on('zoom', () => {
+      console.log(e);
+      console.log('Current lng, lat:',[e.lngLat.lng, e.lngLat.lat]);
+      console.log('Current style:', map.getStyle());
       console.log('Current zoom level:', map.getZoom());
+      console.log('Current bounds:', map.getBounds());
+      console.log('Current pitch:', map.getPitch());
+      console.log('Current bearing:', map.getBearing());
+      console.log('Current center:', map.getCenter());
+      console.log('Current maxBounds:', map.getMaxBounds());
+      console.log('Current maxZoom:', map.getMaxZoom());
+      console.log('Current minZoom:', map.getMinZoom());
+      console.log('Current transform:', map.transform);
+      console.log('Current version:', map.version);
     });
 
   }, [mapReady, setMap]);
 
   return (
       <Box sx={{ flex: 1 }}>
-        <div id="myMap" style={{ height: '100%', width: '100%' , position: 'relative'}} />
+        <div id="myMap" style={{ width: '100%' , height: '100%', position: 'relative'}} />
       </Box>
   );
 }
