@@ -15,6 +15,7 @@ export default function SearchMenu() {
 
     const query = document.getElementById('search') as HTMLInputElement;
     console.log("Search ", query.value)
+
     if (query.value === '') return;
     services.fuzzySearch({
       key: MOMTOM_API_KEY,
@@ -25,8 +26,23 @@ export default function SearchMenu() {
         const longitude = response.results[0]?.position?.lng as number;
         console.log("latitude ", latitude);
         console.log("longitude ", longitude);
-        map.setCenter({lng: longitude, lat:latitude} )
-        map.zoomTo(14, {duration: 4000});
+        map.flyTo({
+          center: [longitude, latitude],
+          zoom: 14,
+          essential: true,
+          speed: 0.8
+          ,});
+        // map.setCenter({lng: longitude, lat:latitude} )
+        // map.zoomTo(14, {duration: 4000});
+
+        // map.flyTo({
+        //   zoom: 5,
+        //   center: [
+        
+        //     172.33918606365154, -43.10024434830323
+        // ],
+        // essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        // })
       }
     });
   }
