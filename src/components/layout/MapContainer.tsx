@@ -6,6 +6,8 @@ import { Protocol } from "pmtiles";
 import {  useMap } from "../context/MapInstanceContext";
 import * as Layers from "../../static/layers/Layers";
 import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
+import MaplibreTerradrawControl from '@watergis/maplibre-gl-terradraw';
+import '@watergis/maplibre-gl-terradraw/dist/maplibre-gl-terradraw.css';
 
 export default function MapContainer() {
   const location: [number, number] = [-74.0149, 40.7110];
@@ -89,6 +91,21 @@ export default function MapContainer() {
       setMap(map);
 
       RemoveBoundaryLayerVisibility(map);
+
+      const drawControl = new MaplibreTerradrawControl({
+          modes: ['render','point','linestring','polygon','rectangle','circle','freehand','angled-rectangle','sensor','sector','select','delete-selection','delete'],
+          open: true,
+      });
+      map.addControl(drawControl, 'top-left');
+      
+      const drawInstance = drawControl.getTerraDrawInstance();
+      
+      drawInstance.on('select', (id) => {
+        const snapshot = drawInstance.getSnapshot();
+        const polygon = snapshot?.find((feature) => feature.id === id);
+        console.log(polygon);
+      });
+
     });
     
     const nav = new maplibregl.NavigationControl({
