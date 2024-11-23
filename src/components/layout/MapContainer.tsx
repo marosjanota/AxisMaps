@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import maplibregl from 'maplibre-gl';
 import "maplibre-gl/dist/maplibre-gl.css";
-import { Protocol, PMTiles } from "pmtiles";
+import { Protocol } from "pmtiles";
 import {  useMap } from "../context/MapInstanceContext";
 import * as Layers from "../../static/layers/Layers";
 import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
 import MaplibreTerradrawControl from '@watergis/maplibre-gl-terradraw';
 import '@watergis/maplibre-gl-terradraw/dist/maplibre-gl-terradraw.css';
-import MapHoverEffect from "../MapHoverEffect";
 
 export default function MapContainer() {
   const location: [number, number] = [-74.0149, 40.7110];
@@ -66,27 +65,6 @@ export default function MapContainer() {
         const polygon = snapshot?.find((feature) => feature.id === id);
         console.log(polygon);
       });
-
-      // map.on("idle", () => {
-      //   const sourceLayerName = "boundaries"; // Replace with the actual layer name
-      //   try {
-      //     const features = map.querySourceFeatures("protomaps", {
-      //       sourceLayer: sourceLayerName,
-      //     });
-
-      //     console.log("features", features)
-
-      //     const geoJson = {
-      //       type: "FeatureCollection",
-      //       features: features.map((feature) => feature.toJSON()),
-      //     };
-
-      //     console.log("Extracted GeoJSON:", geoJson);
-      //   } catch (error) {
-      //     console.error("Failed to query features:", error);
-      //   }
-      // });
-
     });
     
     const nav = new maplibregl.NavigationControl({
@@ -98,19 +76,19 @@ export default function MapContainer() {
     window.map = map;
 
     map.on("click", (e) => {
-      // console.log(e);
-      // console.log('Current lng, lat:',[e.lngLat.lng, e.lngLat.lat]);
-       console.log('Current style:', map.getStyle());
-      // console.log('Current zoom level:', map.getZoom());
-      // console.log('Current bounds:', map.getBounds());
-      // console.log('Current pitch:', map.getPitch());
-      // console.log('Current bearing:', map.getBearing());
-      // console.log('Current center:', map.getCenter());
-      // console.log('Current maxBounds:', map.getMaxBounds());
-      // console.log('Current maxZoom:', map.getMaxZoom());
-      // console.log('Current minZoom:', map.getMinZoom());
-      // console.log('Current transform:', map.transform);
-      // console.log('Current version:', map.version);
+      console.log(e);
+      console.log('Current lng, lat:',[e.lngLat.lng, e.lngLat.lat]);
+      console.log('Current style:', map.getStyle());
+      console.log('Current zoom level:', map.getZoom());
+      console.log('Current bounds:', map.getBounds());
+      console.log('Current pitch:', map.getPitch());
+      console.log('Current bearing:', map.getBearing());
+      console.log('Current center:', map.getCenter());
+      console.log('Current maxBounds:', map.getMaxBounds());
+      console.log('Current maxZoom:', map.getMaxZoom());
+      console.log('Current minZoom:', map.getMinZoom());
+      console.log('Current transform:', map.transform);
+      console.log('Current version:', map.version);
     });
 
   }, [mapReady, setMap]);
@@ -118,7 +96,6 @@ export default function MapContainer() {
   return (
       <Box sx={{ flex: 1 }}>
         <div id="myMap" style={{ width: '100%' , height: '100%', position: 'relative'}} />
-        <MapHoverEffect />
       </Box>
   );
 }

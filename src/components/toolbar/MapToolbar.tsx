@@ -9,6 +9,7 @@ import SearchMenu from "./SearchMenu";
 import LabelEditor from "./LabelEditor";
 import * as Layers from "../../static/layers/Layers";
 import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
+import MapHoverEffect from "../MapHoverEffect";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -94,9 +95,10 @@ export default function BasicButtonGroup() {
       >
         Show/Hide water
       </AxisButton>
+      <MapHoverEffect />
       <CountryLanguageSelector />
       <IconSelector />
-      <LabelEditor />
+ 
       {/* <AxisButton onClickFunction={() => {
           if (map) {
             const visibility = map.getLayer('boundaries_national').visibility;
@@ -106,7 +108,8 @@ export default function BasicButtonGroup() {
         }}>
         Show/Hide national borders
       </AxisButton> */}
-    <PolygonMenu></PolygonMenu>
+    <PolygonMenu />
+
     </Stack>
   );
 }

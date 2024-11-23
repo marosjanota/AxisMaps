@@ -1,38 +1,31 @@
 import { useEffect, useState } from "react";
 import { useMap } from "./context/MapInstanceContext";
-import bordersGeoJson from '../static/layers/NationalBorders.json';
+import bordersGeoJson from "../static/layers/NationalBorders.json";
+import Button from "@mui/material/Button";
+import React from "react";
+import { Box } from "@mui/material";
 
 const MapHoverEffect: React.FC = () => {
   const [hoveredStateId, setHoveredStateId] = useState<string | null>(null);
+  const [selectedStateIds, setSelectedStateIds] = useState<Set<string>>(
+    new Set()
+  );
+  const [isFeatureEnabled, setIsFeatureEnabled] = useState<boolean>(false);
   const { map } = useMap();
-  const sourceLayerName = "boundaries"; 
+  const sourceLayerName = "boundaries";
 
   useEffect(() => {
     if (!map) return;
 
-    console.log("STATE ID", hoveredStateId)
-
-     const extractGeoJsonAndAddLayer = () => {
+    const extractGeoJsonAndAddLayer = () => {
       try {
-        const features = map.querySourceFeatures("protomaps", {
-          sourceLayer: sourceLayerName,
-        });
+        const geoJson: GeoJSON.FeatureCollection =
+          bordersGeoJson as GeoJSON.FeatureCollection;
 
-        // Convert features to GeoJSON format
-        // const geoJson: GeoJSON.FeatureCollection = {
-        //   type: "FeatureCollection",
-        //   features: features.map((feature) => feature.toJSON()),
-        // };
-
-        const geoJson: GeoJSON.FeatureCollection = bordersGeoJson as GeoJSON.FeatureCollection
-        console.log("Extracted GeoJSON:", geoJson); // For debugging
-
-        if (map.getSource(sourceLayerName)) {
-          //map.getSource("boundaries")!.setData(geoJson);
-        } else {
+        if (!map.getSource(sourceLayerName)) {
           map.addSource(sourceLayerName, {
             type: "geojson",
-            data: geoJson, 
+            data: geoJson,
           });
         }
 
@@ -43,13 +36,15 @@ const MapHoverEffect: React.FC = () => {
             source: sourceLayerName,
             layout: {},
             paint: {
-              "fill-color": "#627BC1",
-              "fill-opacity": [
+              "fill-color": [
                 "case",
-                ["boolean", ["feature-state", "hover"], false],
-                1, 
-                0.5, 
+                ["boolean", ["feature-state", "selected"], false], // Check if selected
+                "#FF0000", // Permanent selection color
+                ["boolean", ["feature-state", "hover"], false], // Check if hovered
+                "#627BC1", // Hover color
+                "#000000", // Default color
               ],
+              "fill-opacity": 0.5,
             },
           });
         }
@@ -70,8 +65,6 @@ const MapHoverEffect: React.FC = () => {
         console.error("Failed to query features:", error);
       }
     };
-
-    map.on("idle", extractGeoJsonAndAddLayer);
 
     const handleMouseMove = (e: any) => {
       if (e.features.length > 0) {
@@ -102,18 +95,81 @@ const MapHoverEffect: React.FC = () => {
       setHoveredStateId(null);
     };
 
-    map.on("mousemove", "boundary-fills", handleMouseMove);
-    map.on("mouseleave", "boundary-fills", handleMouseLeave);
+    const handleClick = (e: any) => {
+      if (e.features.length > 0) {
+        const featureId = e.features[0].id;
 
-    return () => {
-      console.log("unmounted")
-      map.off("idle", extractGeoJsonAndAddLayer);
+        setSelectedStateIds((prev) => {
+          const newSet = new Set(prev);
+          if (newSet.has(featureId)) {
+            newSet.delete(featureId);
+            map.setFeatureState(
+              { source: sourceLayerName, id: featureId },
+              { selected: false }
+            );
+          } else {
+            newSet.add(featureId);
+            map.setFeatureState(
+              { source: sourceLayerName, id: featureId },
+              { selected: true }
+            );
+          }
+          return newSet;
+        });
+      }
+    };
+
+    const removeLayersAndSource = () => {
+      if (map.getLayer("boundary-fills")) {
+        map.removeLayer("boundary-fills");
+      }
+      if (map.getLayer("boundary-borders")) {
+        map.removeLayer("boundary-borders");
+      }
+      if (map.getSource(sourceLayerName)) {
+        map.removeSource(sourceLayerName);
+      }
+    };
+
+    if (isFeatureEnabled) {
+      extractGeoJsonAndAddLayer();
+      map.on("mousemove", "boundary-fills", handleMouseMove);
+      map.on("mouseleave", "boundary-fills", handleMouseLeave);
+      map.on("click", "boundary-fills", handleClick);
+    } else {
       map.off("mousemove", "boundary-fills", handleMouseMove);
       map.off("mouseleave", "boundary-fills", handleMouseLeave);
-    };
-  }, [map, hoveredStateId]);
+      map.off("click", "boundary-fills", handleClick);
+      removeLayersAndSource();
+    }
 
-  return null; 
+    return () => {
+      map.off("mousemove", "boundary-fills", handleMouseMove);
+      map.off("mouseleave", "boundary-fills", handleMouseLeave);
+      map.off("click", "boundary-fills", handleClick);
+    };
+  }, [map, isFeatureEnabled, hoveredStateId, selectedStateIds]);
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        maxWidth: 300,
+        mx: "auto",
+        mt: 4,
+      }}
+    >
+      <Button
+        variant="contained"
+        color={isFeatureEnabled ? "secondary" : "primary"}
+        onClick={() => setIsFeatureEnabled((prev) => !prev)}
+      >
+        {isFeatureEnabled ? "Disable Hover Effect" : "Enable Hover Effect"}
+      </Button>
+    </Box>
+  );
 };
 
 export default MapHoverEffect;

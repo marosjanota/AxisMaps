@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useMap } from "../context/MapInstanceContext";
-import { Box, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { GeoJSONSource, MapMouseEvent } from "maplibre-gl";
 const geojsonData: GeoJSON.FeatureCollection<GeoJSON.Point> = {
   type: "FeatureCollection",
