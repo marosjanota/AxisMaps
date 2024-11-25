@@ -48,6 +48,8 @@ export default function MapContainer() {
       
       Layers.AddLabelsLayers(map);
 
+      Layers.AddManhattanBuildingsLayer(map);
+
       setMap(map);
 
       RemoveBoundaryLayerVisibility(map);
