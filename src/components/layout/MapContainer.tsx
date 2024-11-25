@@ -91,6 +91,8 @@ export default function MapContainer() {
       console.log('Current minZoom:', map.getMinZoom());
       console.log('Current transform:', map.transform);
       console.log('Current version:', map.version);
+      const features = map.queryRenderedFeatures(e.point);
+      console.log('Current features:', features);
     });
 
   }, [mapReady, setMap]);
