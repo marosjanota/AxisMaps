@@ -10,6 +10,7 @@ import LabelEditor from "./LabelEditor";
 import * as Layers from "../../static/layers/Layers";
 import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
 import MapHoverEffect from "../MapHoverEffect";
+import LabelEditorStretchable from "./LabelEditorStretchable";
 
 export default function BasicButtonGroup() {
   const { map } = useMap();
@@ -97,6 +98,7 @@ export default function BasicButtonGroup() {
       </AxisButton>
       <MapHoverEffect />
       <CountryLanguageSelector />
+      <LabelEditorStretchable />
       <IconSelector />
  
       {/* <AxisButton onClickFunction={() => {
