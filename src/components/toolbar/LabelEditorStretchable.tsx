@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useMap } from "../context/MapInstanceContext";
 import { Box, Button, TextField } from "@mui/material";
 import { GeoJSONSource, MapMouseEvent } from "maplibre-gl";
-import { TwitterPicker } from "react-color";
+import { HuePicker } from "react-color";
 
 const featureCollection: GeoJSON.FeatureCollection<GeoJSON.Point> = {
   type: "FeatureCollection",
@@ -136,11 +136,12 @@ const LabelEditorStretchable: React.FC = () => {
             label="Enter Colored Label Text"
             variant="outlined"
             fullWidth
+            multiline
             value={text}
             onChange={handleChange}
           />
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <TwitterPicker color={color} onChange={handleColorChange} />
+            <HuePicker color={color} onChange={handleColorChange} />
             <Box
               sx={{
                 width: 36,
