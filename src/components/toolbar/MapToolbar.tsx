@@ -6,7 +6,6 @@ import CountryLanguageSelector from "./CountryLanguageSelector";
 import IconSelector from "./IconSelector";
 import PolygonMenu from "./PolygonMenu";
 import SearchMenu from "./SearchMenu";
-import LabelEditor from "./LabelEditor";
 import * as Layers from "../../static/layers/Layers";
 import { RemoveBoundaryLayerVisibility } from "../options/OptionsBorder";
 import MapHoverEffect from "../MapHoverEffect";
@@ -98,7 +97,6 @@ export default function BasicButtonGroup() {
       </AxisButton>
       <MapHoverEffect />
       <CountryLanguageSelector />
-      <LabelEditorStretchable />
       <IconSelector />
  
       {/* <AxisButton onClickFunction={() => {
@@ -111,7 +109,7 @@ export default function BasicButtonGroup() {
         Show/Hide national borders
       </AxisButton> */}
     <PolygonMenu />
-
+    <LabelEditorStretchable />
     </Stack>
   );
 }

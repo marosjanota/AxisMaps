@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import AxisButton from "../AxisButton";
 import { useMap } from "../context/MapInstanceContext";
 import { services } from '@tomtom-international/web-sdk-services';
