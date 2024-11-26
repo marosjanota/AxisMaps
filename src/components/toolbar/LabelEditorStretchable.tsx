@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useMap } from "../context/MapInstanceContext";
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { GeoJSONSource, MapMouseEvent } from "maplibre-gl";
+import { TwitterPicker } from "react-color";
 
 const featureCollection: GeoJSON.FeatureCollection<GeoJSON.Point> = {
   type: "FeatureCollection",
@@ -31,10 +32,12 @@ const generateBackgroundImage = (color: string) => {
 const LabelEditorStretchable: React.FC = () => {
   const { map } = useMap();
 
+  const [showInputs, setShowInputs] = useState(false);
   const [text, setText] = useState<string>("");
+  const [color, setColor] = useState("#FFD7DD");
 
   useEffect(() => {
-    if (!map || !text) return;
+    if (!map || !(showInputs && text)) return;
 
     const sourceId = "text-source";
     const layerId = "text-and-rectangle-layer";
@@ -42,7 +45,7 @@ const LabelEditorStretchable: React.FC = () => {
     const addLabelWithRoundedRectangle = async (lng: number, lat: number) => {
       if (!text) return;
 
-      const backgroundImage = await generateBackgroundImage("#FFD7DD");
+      const backgroundImage = await generateBackgroundImage(color);
       const mapImageId = `img-lng${lng}-lat${lat}`;
 
       map.addImage(mapImageId, backgroundImage, {
@@ -52,7 +55,7 @@ const LabelEditorStretchable: React.FC = () => {
         ],
         stretchY: [[25, 115]],
         //       [x1, y1, x2,  y2 ]
-        content: [25, 25, 115, 115], 
+        content: [25, 25, 115, 115],
         pixelRatio: 2,
       });
 
@@ -85,14 +88,14 @@ const LabelEditorStretchable: React.FC = () => {
           type: "symbol",
           source: sourceId,
           layout: {
-              'text-field': ['get', 'name'],
-              'icon-text-fit': 'both',
-              'icon-image': ['get', 'image-name'],
-              'icon-overlap': 'always',
-              'text-overlap': 'always',
-              "text-font": ["NotoSans-Regular"],
-          }
-      });
+            "text-field": ["get", "name"],
+            "icon-text-fit": "both",
+            "icon-image": ["get", "image-name"],
+            "icon-overlap": "always",
+            "text-overlap": "always",
+            "text-font": ["NotoSans-Regular"],
+          },
+        });
       }
     };
 
@@ -107,22 +110,49 @@ const LabelEditorStretchable: React.FC = () => {
     return () => {
       map.off("click", handleClick);
     };
-  }, [map, text]);
+  }, [map, text, color, showInputs]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
 
+  const handleToggle = () => {
+    setShowInputs((prev) => !prev);
+  };
+
+  const handleColorChange = (color: any) => {
+    setColor(color.hex);
+  };
+
   return (
-    <Box sx={{ maxWidth: 400, margin: "auto", mt: 4 }}>
-      <TextField
-        label="Enter Colored Label Text"
-        variant="outlined"
-        fullWidth
-        value={text}
-        onChange={handleChange}
-      />
-    </Box>
+    <>
+      <Button variant="contained" onClick={handleToggle}>
+        {showInputs ? "Hide Label Editor" : "Show Label Editor"}
+      </Button>
+
+      {showInputs && (
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <TextField
+            label="Enter Colored Label Text"
+            variant="outlined"
+            fullWidth
+            value={text}
+            onChange={handleChange}
+          />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <TwitterPicker color={color} onChange={handleColorChange} />
+            <Box
+              sx={{
+                width: 36,
+                height: 36,
+                backgroundColor: color,
+                border: "1px solid black",
+              }}
+            />
+          </Box>
+        </Box>
+      )}
+    </>
   );
 };
 
